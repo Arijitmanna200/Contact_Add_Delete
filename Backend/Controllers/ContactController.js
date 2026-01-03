@@ -12,10 +12,10 @@ const addContact = async(req , res)=>{
             })
         }
         //check if the inputed contact already existed or not
-        const duplicateContact = await Contact.findOne({
-            $or : [{email : email} , {phone : phone}]
-        })
-
+const duplicateContact = await Contact.findOne({
+  isDeleted: false,
+  $or: [{ email }, { phone }]
+});
         if(duplicateContact){
             return res.status(409).json({
                 status : 409,
