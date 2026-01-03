@@ -13,7 +13,7 @@ const addContact = async (req, res) => {
         }
         //check if the inputed contact already existed or not
         const duplicateContact = await Contact.findOne({
-            isDeleted: false,
+            isDeleted: true,
             $or: [{ email }, { phone }]
         });
         if (duplicateContact) {
